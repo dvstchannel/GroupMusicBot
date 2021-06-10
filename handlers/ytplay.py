@@ -18,11 +18,11 @@ from helpers.errors import DurationLimitError
 from helpers.gets import get_url, get_file_name
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-@Client.on_message(command("ytp") & other_filters)
+@Client.on_message(command("sabo") & other_filters)
 @errors
 async def play(_, message: Message):
 
-    lel = await message.reply("🔎 **Finding** the song...")
+    lel = await message.reply("🔎 **Tìm kiếm** bài hát...")
     sender_id = message.from_user.id
     user_id = message.from_user.id
     sender_name = message.from_user.first_name
@@ -33,7 +33,7 @@ async def play(_, message: Message):
     for i in message.command[1:]:
         query += ' ' + str(i)
     print(query)
-    await lel.edit("🎵 **Processing** sounds...")
+    await lel.edit("🎵 **Đang bắt đầu** phát nhạc...")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -52,7 +52,7 @@ async def play(_, message: Message):
 
     except Exception as e:
         lel.edit(
-            "❌ Song not found.\n\nTry another song or maybe spell it properly."
+            "❌ Bài hát không được tìm thấy.\n\nHãy thử một bài hát khác hoặc có thể viết đúng chính tả."
         )
         print(str(e))
         return
@@ -61,7 +61,7 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text="Watch On YouTube 🎬",
+                        text="Xem trên Youtube 🎬",
                         url=f"{url}")
                    
                 ]
@@ -72,7 +72,7 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text="Watch On YouTube 🎬",
+                        text="Xem trên Youtube 🎬",
                         url=f"{url}")
                    
                 ]
@@ -87,13 +87,13 @@ async def play(_, message: Message):
     elif url:
         file_path = await converter.convert(youtube.download(url))
     else:
-        return await lel.edit_text("❗ You did not give me anything to play!")
+        return await lel.edit_text("❗ Bạn đã không cho tôi bất cứ điều gì để chơi!")
 
     if message.chat.id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
         photo=thumb_name, 
-        caption=f"#⃣ Your requested song **queued** at position {position}!",
+        caption=f"#⃣ Bài hát yêu cầu của bạn **đã xếp hàng** ở vị trí thứ {position}!",
         reply_markup=keyboard2)
         return await lel.delete()
     else:
@@ -101,7 +101,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo=thumb_name,
         reply_markup=keyboard,
-        caption="▶️ **Playing** here the song requested by {} via YouTube Music 😜".format(
+        caption="▶️ **Đang phát** bài hát được yêu cầu bởi {} via Sabo 😜".format(
         message.from_user.mention()
         ),
     )
