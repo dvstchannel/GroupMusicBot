@@ -7,29 +7,26 @@ from helpers.filters import other_filters2
 
 @Client.on_message(other_filters2)
 async def start(_, message: Message):
-    await message.reply_sticker("CAACAgQAAx0CTv65QgABBfJlYF6VCrGMm6OJ23AxHmD6qUSWESsAAhoQAAKm8XEeD5nrjz5IJFYeBA")
+    await message.reply_sticker("CAACAgUAAxkBAAP5YMFqSakH6Uy6WbJXvpbLqn5e6FUAAhgFAAL4xsUK3oW39ORkPRgfBA")
     await message.reply_text(
-        f"""**Hey, I'm {bn} 🎵
+        f"""**Hey, Tôi là {bn} 🎵
 
-I can play music in your group's voice call. Developed by [Jason](https://t.me/ImJanindu).
+Tôi có thể phát nhạc trong cuộc gọi thoại của nhóm bạn. Được phát triển bởi [Sabo](https://t.me/BotSabo).
 
-Add me to your group and play music freely!**
+Thêm tôi vào nhóm của bạn và chơi nhạc tự do!**
         """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🛠 Source Code 🛠", url="https://github.com/Infinity-Bots/GroupMusicPlayerBot")
-                  ],[
-                    InlineKeyboardButton(
-                        "💬 Group", url="https://t.me/InfinityBOTs_Support"
+                        "💬 Group", url="https://t.me/nanglive"
                     ),
                     InlineKeyboardButton(
-                        "🔊 Channel", url="https://t.me/Infinity_BOTs"
+                        "🔊 Channel", url="https://t.me/kenhsex"
                     )
                 ],[ 
                     InlineKeyboardButton(
-                        "➕ Add To Your Group ➕", url="https://t.me/JEGroupMusicPlayerBot?startgroup=true"
+                        "➕ Thêm tôi vào nhóm ➕", url="https://t.me/HiSabo_bot?startgroup=true"
                     )]
             ]
         ),
@@ -38,12 +35,12 @@ Add me to your group and play music freely!**
 
 @Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
-      await message.reply_text("""**Group Music Player Online ✅**""",
+      await message.reply_text("""**Group Music Player trực tuyến ✅**""",
       reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🔊 Channel", url="https://t.me/Infinity_BOTs")
+                        "🔊 Channel", url="https://t.me/kenhsex")
                 ]
             ]
         )
